@@ -1,0 +1,36 @@
+type User @table {
+  displayName: String!
+  createdAt: Timestamp!
+  email: String
+  photoUrl: String
+}
+
+type BillingCycle @table {
+  name: String!
+  days: Int!
+}
+
+type Category @table {
+  user: User
+  name: String!
+}
+
+type SubscriptionType @table {
+  user: User
+  name: String!
+  cost: Float!
+  billingCycle: BillingCycle!
+  createdAt: Timestamp!
+  description: String
+  startDate: Date
+  endDate: Date
+  category: Category
+  isActive: Boolean
+  nextBillingDate: Date
+}
+
+type Payment @table {
+  subscription: SubscriptionType!
+  paymentDate: Timestamp!
+  amount: Float!
+}
